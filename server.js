@@ -29,22 +29,25 @@ mongoose
     .then(() => console.log('DataBase connected to the server'))
     .catch(err => console.log(err))
 
+     
 var Users = require('./routes/Users')
-var Search= require('./routes/search')
+//var Search= require('./routes/search')
 
 app.use('/users', Users)
-app.use('/search',Search)
+///app.use('/search',Search)
 
-// app.get("/search", function(req, res)  {
-//     var toSearch= req.body
-//     console.log(toSearch)
-//      Users.find(toSearch,function(err, data)  {
-//          if(err){
-//              throw err;
-//          }
-//          res.json(data);
-//      });
-//  });
+
+const User = require('./models/User');
+app.get("/search", function(req, res)  {
+    var toSearch= req.body
+    console.log(toSearch)
+     User.find(toSearch,function(err, data)  {
+         if(err){
+             throw err;
+         }
+         res.json(data);
+     });
+ });
 
 
 
