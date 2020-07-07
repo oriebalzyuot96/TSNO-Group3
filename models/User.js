@@ -10,6 +10,7 @@ const UserSchema = new Schema({
         service: {type: String, required: false},
         hourCost: {type: Number, required: false},
         img: {type: String, required: false},
+        
     },
     {
         timestamps: true
