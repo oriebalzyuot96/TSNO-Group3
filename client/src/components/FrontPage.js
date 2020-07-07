@@ -11,6 +11,8 @@ class FrontPage extends Component {
        
         this.state = {
       value: "teacher",
+
+      users:[]
       
     };
         this.handleChange = this.handleChange.bind(this)
@@ -34,6 +36,10 @@ handleSubmit1(event) {
    ("http://localhost:3000/search", this.state.value)
     .then((res) => {
         console.log(this.state.value)
+          console.log(res)
+          this.setState({
+            users:res.data
+          })
     }).catch((error) => {
         console.log(error)
     });
@@ -55,12 +61,40 @@ handleSubmit1(event) {
                     <label > Search By catogry of  Serves
                          <select className="searchI" value={this.state.value} onChange={this.handleChange} >
                         <option value="teacher">teacher</option>
-                        <option value="writer">writer</option>
+                        <option value="smith">smith</option>
                         <option value="doctor">doctor</option>
                         <option value="translater">translater</option>
                     </select>
                     </label>
 <input type="submit" value="Search"></input>
+<div>
+
+{this.state.users.map(user => 
+
+  {
+    //service: "smith"
+if(user.service==this.state.value){
+  return (
+    <div>
+<div>{user.name}</div>
+<div>{user.email}</div>
+
+</div>
+
+
+
+  )
+}
+
+
+
+  } 
+ 
+)}
+
+
+
+</div>
 </form>
 </div>
   <br></br><br></br>
