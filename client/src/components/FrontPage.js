@@ -10,12 +10,14 @@ class FrontPage extends Component {
         super();
        
         this.state = {
-      value: "teacher",
+      value:"teacher",
+      val:"amman",
 
       users:[]
       
     };
-        this.handleChange = this.handleChange.bind(this)
+        this.handleChange1 = this.handleChange1.bind(this)
+        //this.handleChange2= this.handleChange2.bind(this)
         
         this.handleSubmit1 = this.handleSubmit1.bind(this);
         
@@ -25,15 +27,15 @@ class FrontPage extends Component {
 
 
 handleSubmit1(event) {
-    alert("Your favorite flavor is: " + this.state.value );
+    alert("Your favorite flavor is: " + this.state.value +this.state.val);
     event.preventDefault();
-    console.log(this.state.value)
+    console.log(this.state.value+this.state.val)
     //console.log("orieb")
     
 
   //FrontPage//connect server with client 
    axios.get
-   ("http://localhost:3000/search", this.state.value)
+   ("http://localhost:3000/search",this.state.value)
     .then((res) => {
         console.log(this.state.value)
           console.log(res)
@@ -47,10 +49,15 @@ handleSubmit1(event) {
   }
  
 
-  handleChange = event => {
-    this.setState({ value: event.target.value });
+  handleChange1 = event => {
+    this.setState({
+       value: event.target.value,
+       val:event.target.val
+      
+      });
   };
   
+ 
 //make select input 
     render() { 
         return (
@@ -59,13 +66,22 @@ handleSubmit1(event) {
 <br></br><br></br>
                 <form onSubmit={this.handleSubmit1}>
                     <label > Search By catogry of  Serves
-                         <select className="searchI" value={this.state.value} onChange={this.handleChange} >
+                         <select className="searchI" value={this.state.value} onChange={this.handleChange1} >
                         <option value="teacher">teacher</option>
                         <option value="smith">smith</option>
                         <option value="doctor">doctor</option>
                         <option value="carpenter">carpenter</option>
                     </select>
                     </label>
+                    <label > Search 
+                         <select className="searchI" val={this.state.val} onChange={this.handleChange1} >
+                        <option value="amman">amman</option>
+                        <option value="irbid">irbid</option>
+                        <option value="jarsh">jarsh</option>
+                        <option value="karak">maan</option>
+                    </select>
+                    </label>
+
 <input type="submit" value="Search"></input>
 <div>
 
@@ -73,7 +89,7 @@ handleSubmit1(event) {
 
   {
     //service: "smith"
-if(user.service==this.state.value){
+if(user.service==this.state.value || user.location==this.state.val){
   return (
     <div>
 <div>{user.name}</div>
