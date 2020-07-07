@@ -63,7 +63,7 @@ handleSubmit1(event) {
                         <option value="teacher">teacher</option>
                         <option value="smith">smith</option>
                         <option value="doctor">doctor</option>
-                        <option value="translater">translater</option>
+                        <option value="carpenter">carpenter</option>
                     </select>
                     </label>
 <input type="submit" value="Search"></input>
@@ -78,7 +78,8 @@ if(user.service==this.state.value){
     <div>
 <div>{user.name}</div>
 <div>{user.email}</div>
-
+<div>{user.service}</div>
+<br></br><br></br><br></br>
 </div>
 
 
