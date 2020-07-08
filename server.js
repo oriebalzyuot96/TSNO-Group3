@@ -38,18 +38,27 @@ app.use('/users', Users)
 
 
 const User = require('./models/User');
+// app.get("/search", function(req, res)  {
+//     var toSearch= req.body
+//     console.log(toSearch)
+//      User.find(toSearch,function(err, data)  {
+//          if(err){
+//              throw err;
+//          }
+//          res.json(data);
+//      });
+//  });
+
+//function to get all data 
 app.get("/search", function(req, res)  {
-    var toSearch= req.body
-    console.log(toSearch)
-     User.find(toSearch,function(err, data)  {
-         if(err){
-             throw err;
-         }
-         res.json(data);
-     });
- });
-
-
+User.find(function(err,user)  {
+    if(err){
+        throw err;
+    }
+    console.log(user)
+    res.json(user);
+});
+})
 
 
 
